@@ -1,0 +1,119 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #f7f7f7;
+}
+
+h2 {
+  margin: 0;
+}
+
+/* App */
+
+.app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1280px;
+}
+
+.app__title {
+  width: 100%;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.app__inner {
+  display: flex;
+}
+
+.app__main {
+  flex: 1 1 auto;
+}
+
+.app__extra {
+  flex-shrink: 0;
+  width: 240px;
+  margin-left: 30px;
+}
+
+.app__box {
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, .05);
+}
+
+.app__label {
+  display: block;
+  padding: 10px 15px;
+  font-size: 18px;
+}
+
+.app__actions {
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* Output template */
+
+.output-tpl {
+  padding: 15px;
+}
+
+.output-tpl__inner {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
+}
+
+.output-tpl__block {
+  position: relative;
+  width: 33.33333%;
+  padding: 15px;
+}
+
+.output-tpl__block:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.output-tpl__child {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+/* Drag & drop */
+
+.drag-n-drop {
+  display: block;
+  text-align: center;
+}
+
+/* Common */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
