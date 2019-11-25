@@ -44,7 +44,14 @@ function downloadScreenshot(blob) {
   link.download = 'screenshot.png';
   link.href = imageUrl;
   link.click();
-  window.open(imageUrl);
+  // fallback
+  const newWindow = window.open('about:blank');
+  setTimeout(() => {
+    const image = document.createElement('img');
+    image.src = imageUrl;
+    newWindow.document.body.append(image);
+    newWindow.focus();
+  });
 }
 
 function dragNDropHandler(e) {
@@ -134,7 +141,7 @@ function createPopup() {
         </li>
       </ul>
       <div class="popup__view">
-        
+        <canvas></canvas>
       </div>
     </div>
   `;
