@@ -1,5 +1,6 @@
 const appElem = document.querySelector('.js-app');
 let popupElem = null;
+let canvasElem = null;
 
 document.addEventListener('click', onClick);
 ['dragenter', 'dragleave', 'dragover', 'drop', 'change']
@@ -121,6 +122,13 @@ function getImagesTypes() {
 
 function startEditPreview() {
   createPopup();
+  initCanvas();
+}
+
+function initCanvas() {
+  canvasElem = popupElem.querySelector('.js-canvas');
+  canvasElem.width = document.documentElement.clientWidth;
+  canvasElem.height = document.documentElement.clientHeight;
 }
 
 function stopEditPreview() {
@@ -129,24 +137,27 @@ function stopEditPreview() {
 
 function createPopup() {
   popupElem = document.createElement('div');
-  popupElem.className = 'popup';
+  popupElem.className = 'editor popup js-popup';
   popupElem.innerHTML = `
-    <div class="popup__inner">
-      <ul class="btn-list popup__actions">
-        <li class="btn-list__item">
-          <button class="btn btn--blue" type="button">
-            Back to original
-          </button>
-        </li>
-        <li class="btn-list__item">
-          <button class="btn btn--green" type="button" 
-            data-edit-image="stop">Done</button>
-        </li>
-      </ul>
-      <div class="popup__view">
-        <canvas></canvas>
+    <div class="editor__overlay">
+      <div class="editor__inner">
+        <ul class="btn-list editor__actions">
+          <li class="btn-list__item">
+            <button class="btn btn--blue" type="button">
+              Back to original
+            </button>
+          </li>
+          <li class="btn-list__item">
+            <button class="btn btn--green" type="button" 
+              data-edit-image="stop">Done</button>
+          </li>
+        </ul>
+        <div class="editor__view">
+        
+        </div>
       </div>
     </div>
+    <canvas class="editor__sandbox js-canvas"></canvas>
   `;
   document.body.append(popupElem);
 }
