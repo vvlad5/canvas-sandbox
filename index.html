@@ -8,35 +8,34 @@
   <link rel="stylesheet" href="main.css">
   <title>Canvas sandbox</title>
 </head>
-<body>
-
-<div class="app">
+<body class="app js-app">
+<div class="app__inner">
   <h2 class="app__title">Create your template</h2>
-  <div class="app__inner">
+  <div class="app__content">
     <div class="app__main">
       <div class="app__box">
         <span class="app__label">Drag & drop your photos</span>
-        <div class="grid app__grid">
+        <div class="grid app__grid" data-screenshot-tpl>
           <div class="grid__inner">
             <div class="grid__block">
-              <label class="drag-n-drop grid__child">
-                <input class="visually-hidden" type="file">
-                <i class="drag-n-drop__icon"></i>
-                <span class="drag-n-drop__hint">Drag your photo here</span>
+              <label class="drop-zone grid__child" data-drop-zone>
+                <input class="visually-hidden" type="file" data-html2canvas-ignore>
+                <i class="drop-zone__icon"></i>
+                <span class="drop-zone__hint">Drag your photo here</span>
               </label>
             </div>
             <div class="grid__block">
-              <label class="drag-n-drop grid__child">
-                <input class="visually-hidden" type="file">
-                <i class="drag-n-drop__icon"></i>
-                <span class="drag-n-drop__hint">Drag your photo here</span>
+              <label class="drop-zone grid__child" data-drop-zone>
+                <input class="visually-hidden" type="file" data-html2canvas-ignore>
+                <i class="drop-zone__icon"></i>
+                <span class="drop-zone__hint">Drag your photo here</span>
               </label>
             </div>
             <div class="grid__block">
-              <label class="drag-n-drop grid__child">
-                <input class="visually-hidden" type="file">
-                <i class="drag-n-drop__icon"></i>
-                <span class="drag-n-drop__hint">Drag your photo here</span>
+              <label class="drop-zone grid__child" data-drop-zone>
+                <input class="visually-hidden" type="file" data-html2canvas-ignore>
+                <i class="drop-zone__icon"></i>
+                <span class="drop-zone__hint">Drag your photo here</span>
               </label>
             </div>
           </div>
@@ -44,10 +43,14 @@
       </div>
       <ul class="app__actions">
         <li class="app__actions-item">
-          <button class="app__btn app__btn--blue" type="button">Edit image</button>
+          <button class="btn btn--blue"
+                  type="button" data-edit-image>Edit image
+          </button>
         </li>
         <li class="app__actio">
-          <button class="app__btn app__btn--green" type="button">Download</button>
+          <button class="btn btn--green"
+                  type="button" data-get-screenshot>Download
+          </button>
         </li>
       </ul>
     </div>
@@ -62,6 +65,7 @@
   </div>
 </div>
 
-<script src="index.js"></script>
+<script src="js/html2canvas.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
