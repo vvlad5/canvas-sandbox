@@ -45,12 +45,11 @@ function downloadScreenshot(blob) {
   link.href = imageUrl;
   link.click();
   // fallback
-  const newWindow = window.open('about:blank');
+  const newWindow = window.open('about:blank', '', '');
   setTimeout(() => {
-    const image = document.createElement('img');
+    const image = new Image();
     image.src = imageUrl;
-    newWindow.document.body.append(image);
-    newWindow.focus();
+    newWindow.document.write(image.outerHTML);
   });
 }
 
