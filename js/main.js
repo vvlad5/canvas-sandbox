@@ -1,6 +1,7 @@
 const appElem = document.querySelector('.js-app');
+let popupElem = null;
 
-appElem.addEventListener('click', onClick);
+document.addEventListener('click', onClick);
 ['dragenter', 'dragleave', 'dragover', 'drop', 'change']
   .forEach(eventName => {
     appElem.addEventListener(eventName, dragNDropHandler);
@@ -11,12 +12,15 @@ function onClick({target}) {
   const trigger = target.closest('[data-get-screenshot], [data-edit-image]');
   if (!trigger) return false;
   const data = trigger.dataset;
-  switch(true) {
+  switch (true) {
     case 'getScreenshot' in data:
       getScreenshot();
       break;
-    case 'editImage' in data:
-      editPreview();
+    case data.editImage === 'start':
+      startEditPreview();
+      break;
+    case data.editImage === 'stop':
+      stopEditPreview();
       break;
   }
 }
@@ -41,7 +45,6 @@ function downloadScreenshot(blob) {
   link.href = imageUrl;
   link.click();
   window.open(imageUrl);
-  URL.revokeObjectURL(link.href);
 }
 
 function dragNDropHandler(e) {
@@ -106,6 +109,39 @@ function getImagesTypes() {
   ];
 }
 
-function editPreview() {
-  console.log('TODO')
+function startEditPreview() {
+  createPopup();
+}
+
+function stopEditPreview() {
+  destroyPopup();
+}
+
+function createPopup() {
+  popupElem = document.createElement('div');
+  popupElem.className = 'popup';
+  popupElem.innerHTML = `
+    <div class="popup__inner">
+      <ul class="btn-list popup__actions">
+        <li class="btn-list__item">
+          <button class="btn btn--blue" type="button">
+            Back to original
+          </button>
+        </li>
+        <li class="btn-list__item">
+          <button class="btn btn--green" type="button" 
+            data-edit-image="stop">Done</button>
+        </li>
+      </ul>
+      <div class="popup__view">
+        
+      </div>
+    </div>
+  `;
+  document.body.append(popupElem);
+}
+
+function destroyPopup() {
+  popupElem.remove();
+  popupElem = null;
 }
