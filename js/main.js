@@ -39,18 +39,22 @@ function getScreenshot() {
 }
 
 function downloadScreenshot(blob) {
+  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveOrOpenBlob(blob);
+    return false;
+  }
   const imageUrl = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.download = 'screenshot.png';
   link.href = imageUrl;
   link.click();
   // fallback
-  const newWindow = window.open('about:blank', '', '');
-  setTimeout(() => {
-    const image = new Image();
-    image.src = imageUrl;
-    newWindow.document.write(image.outerHTML);
-  });
+  // const newWindow = window.open('about:blank');
+  // setTimeout(() => {
+  //   const image = new Image();
+  //   image.src = imageUrl;
+  //   newWindow.document.write(image.outerHTML);
+  // });
 }
 
 function dragNDropHandler(e) {
